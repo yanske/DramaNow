@@ -1,0 +1,22 @@
+{
+  "name": "DramaNow-Client",
+  "version": "1.0",
+  "description": "Pickup where you left off with your favourite dramas!",
+  "permissions": ["storage", "activeTab", "tabs"],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "js/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "manifest_version": 2
+}
