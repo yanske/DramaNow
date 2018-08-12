@@ -11,5 +11,13 @@
 
 * Creating an user / signing in: pass random, unique token around
 * Updating drama: create new watching event
-* Returning watch list (GraphQL): get user's userdramas, and their latest watching: -> check if done, if done, check for next episode exists
+* Returning watch list: get user's userdramas, and their latest watching: -> check if done, if done, check for next episode exists
 * Checking for new episode(< daily job): bg job that checks for dramas w/o a last_new_episode or a valid last_new_episode (ie within a few months)
+
+### Controllers / Services
+
+* UserController
+* WatchingController
+
+* Service to process watching request
+* Service to process update request
