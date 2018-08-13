@@ -11,4 +11,19 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  # GET /users/{#key}.json
+  def valid
+    user_exists = if params.key?(:key)
+      User.exists?(key: params[:key])
+    end
+
+    respond_to do |format|
+      if user_exists
+        format.json { render json: "Valid", status: :ok }
+      else
+        format.json { render json: "", status: :unauthorized }
+      end
+    end
+  end
 end
