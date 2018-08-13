@@ -12,6 +12,9 @@
   },
   "content_scripts": [
     {
+      "matches": [
+        "*://*.dramafever.com/*"
+      ],
       "js": [
         "js/content.js"
       ],
