@@ -37,4 +37,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get valid_users_url, params: { key: invalid_key, format: :json }
     assert_response :unauthorized
   end
+
+  test "valid returns unauthorized if user key is not passed" do
+    get valid_users_url, params: { format: :json }
+    assert_response :unauthorized
+  end
 end
