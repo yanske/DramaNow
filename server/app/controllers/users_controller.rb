@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/{#key}.json
+  # GET /users/valid.json
   def valid
     user_exists = if params.key?(:key)
       User.exists?(key: params[:key])

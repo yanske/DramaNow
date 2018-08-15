@@ -1,6 +1,6 @@
 define(function(){
   return {
-    render: function(container, callbacks) {
+    render: function(container, api, callbacks) {
       const logo = '<h1 class="logo">D</h1>';
 
       const signUp = '<button class="home" id="signup">Sign Up</button>';

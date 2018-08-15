@@ -1,6 +1,6 @@
 define(function(){
   return {
-    render: function(container, callbacks) {
+    render: function(container, api, callbacks) {
       // Make API call
       container.innerHTML = '...';
     }

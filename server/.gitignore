@@ -40,5 +40,8 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ingore .rake_tasks~
+.rake_tasks~
+
 # Ignore node_modules
 node_modules/
