@@ -7,7 +7,7 @@ define(function(){
 
       document.getElementById('enter').onclick = function(){
         const userKey = document.getElementById('input').value;
-        api.login(userKey, function(response){ console.log("yes")}, function(error){console.log("no")});
+        api.login(userKey, function(response){ console.log(response)}, function(error){console.log(error)});
       };
     }
   };

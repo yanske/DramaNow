@@ -1,10 +1,11 @@
 define(function(){
   const baseUrl = 'http://0.0.0.0:3000/';
+  const status = { ok: 200, created: 201 }
   var httpRequest = function() {
     this.get = function(url, onSuccess, onError){
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == status.ok) {
           onSuccess(xmlHttp.responseText);
         } else {
           onError(xmlHttp.responseText);
@@ -15,7 +16,17 @@ define(function(){
       xmlHttp.send(null);
     },
     this.post = function(url, onSuccess, onError){
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == status.created) {
+          onSuccess(xmlHttp.responseText);
+        } else {
+          onError(xmlHttp.responseText);
+        }
+      }
 
+      xmlHttp.open('POST', url, true);
+      xmlHttp.send(null);
     }
   }
 
@@ -23,7 +34,7 @@ define(function(){
     signup: function(onSuccess, onError) {
       const requestUrl = baseUrl + 'users';
       var request = new httpRequest();
-      request.post(url, onSuccess, onError);
+      request.post(requestUrl, onSuccess, onError);
     },
     login: function(key, onSuccess, onError){
       const requestUrl = baseUrl + 'users/valid?key=' + key;
