@@ -31,5 +31,5 @@ define(function(require) {
       console.log("User key: " + result.key);
       initList();
     }
-  });;
+  });
 });
