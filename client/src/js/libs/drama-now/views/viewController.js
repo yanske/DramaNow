@@ -19,8 +19,17 @@ define(function(require) {
   }
 
   function initList() {
-
+    var list = require('./pages/list');
+    list.render(container, api, callbacks);
   }
-  
-  initHome();
+
+  // If key, render list, else, render home
+  chrome.storage.sync.get(['key'], function(result) {
+    if(result.key == null) {
+      initHome();
+    } else {
+      console.log("User key: " + result.key);
+      initList();
+    }
+  });;
 });

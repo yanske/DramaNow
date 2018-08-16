@@ -7,7 +7,13 @@ define(function(){
 
       document.getElementById('enter').onclick = function(){
         const userKey = document.getElementById('input').value;
-        api.login(userKey, function(response){ console.log(response)}, function(error){console.log(error)});
+        var onSuccess = function(response) {
+          chrome.storage.sync.set({key: userKey}, function() {
+            callbacks.list;
+          });
+        };
+
+        api.login(userKey, onSuccess, function(error){console.log(error)});
       };
     }
   };

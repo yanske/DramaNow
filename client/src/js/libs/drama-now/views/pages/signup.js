@@ -3,8 +3,17 @@ define(function(){
     render: function(container, api, callbacks) {
       // Make API call
       container.innerHTML = '...';
-      api.signup(function(response){ console.log(response)}, function(error){console.log(error)});
-      //document.getElementById('got').onclick = callbacks.list;
+      var onSuccess = function(userKey) {
+        chrome.storage.sync.set({key: userKey}, function() {
+          const key = '<h1>' + userKey + '</h1>';
+          const button = '<button id="gotit">Got it!</button>'
+          container.innerHTML = key + button;
+
+          document.getElementById('gotit').onclick = callbacks.list;
+        });
+      };
+
+      api.signup(onSuccess, function(error){ console.log("err" + error) });
     }
   };
 });
