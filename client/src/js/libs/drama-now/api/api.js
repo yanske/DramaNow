@@ -15,7 +15,7 @@ define(function(){
       xmlHttp.open('GET', url, true);
       xmlHttp.send(null);
     },
-    this.post = function(url, onSuccess, onError){
+    this.post = function(url, payload, onSuccess, onError){
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == status.created) {
@@ -26,7 +26,8 @@ define(function(){
       }
 
       xmlHttp.open('POST', url, true);
-      xmlHttp.send(null);
+      xmlHttp.setRequestHeader('Content-Type', 'application/json');
+      xmlHttp.send(payload);
     }
   }
 
@@ -34,16 +35,17 @@ define(function(){
     signup: function(onSuccess, onError) {
       const requestUrl = baseUrl + 'users';
       var request = new httpRequest();
-      request.post(requestUrl, onSuccess, onError);
+      request.post(requestUrl, null, onSuccess, onError);
     },
     login: function(key, onSuccess, onError){
       const requestUrl = baseUrl + 'users/valid?key=' + key;
       var request = new httpRequest();
       request.get(requestUrl, onSuccess, onError);
     },
-    watchingUpdate: function(payload, onSuccess, onError) {
-      console.log(payload);
-      onSuccess();
+    watchingUpdate: function(key, payload, onSuccess, onError) {
+      const requestUrl = baseUrl + 'users/' + key + '/watching_events';
+      var request = new httpRequest();
+      request.post(requestUrl, JSON.stringify(payload), onSuccess, onError);
     }
   }
 });

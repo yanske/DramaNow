@@ -4,7 +4,7 @@
   "description": "Pickup where you left off with your favourite dramas!",
   "permissions": ["storage"],
   "background": {
-    "scripts": ["js/background.js"],
+    "scripts": ["js/libs/vendor/require.js", "js/background.js"],
     "persistent": false
   },
   "browser_action": {
