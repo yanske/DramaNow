@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  drama: one
+  episode_number: 1
+  episode_length: 1
+
+two:
+  user: two
+  drama: two
+  episode_number: 1
+  episode_length: 1

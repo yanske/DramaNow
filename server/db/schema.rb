@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817033842) do
+ActiveRecord::Schema.define(version: 20180817153935) do
 
   create_table "dramas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", null: false
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 20180817033842) do
     t.index ["title", "site"], name: "index_on_title_and_site"
   end
 
+  create_table "user_dramas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.bigint "drama_id", null: false
+    t.integer "episode_number", null: false
+    t.integer "episode_length", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drama_id"], name: "index_user_dramas_on_drama_id"
+    t.index ["user_id", "drama_id", "episode_number"], name: "index_on_user_and_drama_and_episode"
+    t.index ["user_id", "drama_id"], name: "index_on_user_and_drama"
+    t.index ["user_id"], name: "index_user_dramas_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "key", null: false
     t.datetime "created_at", null: false
@@ -31,4 +44,6 @@ ActiveRecord::Schema.define(version: 20180817033842) do
     t.index ["key"], name: "index_users_on_key", unique: true
   end
 
+  add_foreign_key "user_dramas", "dramas"
+  add_foreign_key "user_dramas", "users"
 end

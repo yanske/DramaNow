@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :user_dramas, dependent: :destroy
+
   validates :key, presence: true, uniqueness: true, length: { is: 6 }
   after_initialize :intialize_unique_key
 

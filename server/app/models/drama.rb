@@ -1,4 +1,6 @@
 class Drama < ApplicationRecord
+  has_many :user_dramas, dependent: :destroy
+
   ACCEPTED_SITES = ['dramafever'].freeze
 
   validates :title, presence: true, format: { with: /\A[a-zA-Z0-9-]+\Z/ }
