@@ -3,7 +3,7 @@
 ### Database 
 
 * User: id, unique key
-* Drama: id, title, site, latest episode, link_template, require_fetch, last_new_episode, imglink
+* Drama: id, title, site, latest episode, link_template, last_new_episode, imglink
 * UserDramas (Connects user with dramas): id, userid, dramaid, episode number, episode length
 * Watching (User polling events): id, userdramaid, timestamp in show
 

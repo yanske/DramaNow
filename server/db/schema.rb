@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180812205125) do
+ActiveRecord::Schema.define(version: 20180817033842) do
+
+  create_table "dramas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title", null: false
+    t.string "site", null: false
+    t.integer "latest_episode", default: 0
+    t.timestamp "latest_episode_update"
+    t.string "link", null: false
+    t.string "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title", "site"], name: "index_on_title_and_site"
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "key", null: false

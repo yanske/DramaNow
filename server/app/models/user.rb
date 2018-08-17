@@ -5,11 +5,10 @@ class User < ApplicationRecord
   private 
 
   def intialize_unique_key
-    self.key ||= SecureRandom.urlsafe_base64[0, 6]
-    
     # While not unqiue, re-initialize
-    while User.exists?(self.key)
-      self.key = SecureRandom.urlsafe_base64[0, 6]
+    while self.key.nil?
+      key = SecureRandom.urlsafe_base64[0, 6]
+      self.key = key unless User.where(key: self.key).exists?
     end
   end
 end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: TitleOne
+  site: dramafever
+  latest_episode: 1
+  latest_episode_update: 2018-08-16 23:35:52
+  link: MyString
+  thumbnail: MyString
+
+two:
+  title: TitleTwo
+  site: dramafever
+  latest_episode: 10
+  latest_episode_update: 2018-08-16 23:35:52
+  link: MyString/test/32/img
+
