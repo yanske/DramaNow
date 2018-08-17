@@ -14,12 +14,13 @@ define(function(require){
   return {
     /* Expected Parse Info
      * {
+     *    url: string
      *    title: string (slug)
      *    site: string
-     *    imgLink: string
+     *    thumbnail: string
      *    currentEpisode: int
      *    currentTime: int (seconds)
-     *    currentEpisodeLength: int (seconds)
+     *    episodeLength: int (seconds)
      *    latestEpisode: int
      * }
      */
