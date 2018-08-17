@@ -4,15 +4,17 @@ require(
   ["js/libs/drama-now/parser/parser", "js/libs/drama-now/api/api"],
   function(parser, api) {
     var parseAndUpdate = function() {
-      //parser.parse();
-      // API call
+      var result = parser.parse();
+      api.watchingUpdate(result, function(){}, function(){});
     }
 
-    // Op if logged in
-    chrome.storage.sync.get(['key'], function(result) {
-      if(result.key != null && parser.validSite()) {
-        setInterval(parseAndUpdate, 60000);
-      }
-    });
+    window.onload = function() {
+      // Op if logged in
+      chrome.storage.sync.get(['key'], function(result) {
+        if(result.key != null && parser.validSite()) {
+          setInterval(parseAndUpdate, 10000);
+        }
+      });
+    };
   }
 );

@@ -25,7 +25,9 @@ define(function(require){
      */
     parse: function(){
       if (isDomain('dramafever.com')) {
-        return dramafever.parse();
+        var results = dramafever.parse();
+        results.site = 'dramafever';
+        return results;
       } else {
         return null;
       }

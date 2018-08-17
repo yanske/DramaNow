@@ -40,6 +40,10 @@ define(function(){
       const requestUrl = baseUrl + 'users/valid?key=' + key;
       var request = new httpRequest();
       request.get(requestUrl, onSuccess, onError);
+    },
+    watchingUpdate: function(payload, onSuccess, onError) {
+      console.log(payload);
+      onSuccess();
     }
   }
 });
