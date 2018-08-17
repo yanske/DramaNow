@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_drama: one
+  duration: 1
+
+two:
+  user_drama: two
+  duration: 329

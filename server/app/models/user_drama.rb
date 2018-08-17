@@ -2,6 +2,7 @@ class UserDrama < ApplicationRecord
   # Represents an episode that a user is watching
   belongs_to :user
   belongs_to :drama
+  has_many :watching_events, dependent: :destroy
 
   validates :user, presence: true
   validates :drama, presence: true

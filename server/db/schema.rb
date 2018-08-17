@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817153935) do
+ActiveRecord::Schema.define(version: 20180817162721) do
 
   create_table "dramas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", null: false
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20180817153935) do
     t.index ["key"], name: "index_users_on_key", unique: true
   end
 
+  create_table "watching_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_drama_id", null: false
+    t.integer "duration", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_drama_id"], name: "index_watching_events_on_user_drama_id"
+  end
+
   add_foreign_key "user_dramas", "dramas"
   add_foreign_key "user_dramas", "users"
+  add_foreign_key "watching_events", "user_dramas"
 end
