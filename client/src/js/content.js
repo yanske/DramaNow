@@ -4,7 +4,7 @@ require(
   ["js/libs/drama-now/parser/parser", "js/libs/drama-now/api/api"],
   function(parser, api) {
     var parseAndUpdate = function() {
-      parser.parse();
+      //parser.parse();
       // API call
     }
 
