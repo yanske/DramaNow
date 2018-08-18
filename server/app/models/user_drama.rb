@@ -9,7 +9,7 @@ class UserDrama < ApplicationRecord
   validates :episode_number, presence: true, numericality: { only_integer: true }
   validates :episode_length, presence: true, numericality: { only_integer: true }
 
-  validate :unique_user_drama_episode_number
+  validate :unique_user_drama_episode_number, on: :create
   
   private
 
