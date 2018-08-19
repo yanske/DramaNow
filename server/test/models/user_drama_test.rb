@@ -22,4 +22,23 @@ class UserDramaTest < ActiveSupport::TestCase
     refute userdrama.save
     assert_includes userdrama.errors.full_messages, "User already watching this episode"
   end
+
+  test "new episode returns true if new episode is available" do
+    userdrama = user_dramas(:one)
+    drama = userdrama.drama
+    drama.update!(latest_episode: userdrama.episode_number + 1)
+
+    assert_predicate userdrama.reload, :new_episode_available?
+  end
+
+  test "new episode returns false if new episode is not available" do
+    userdrama = user_dramas(:one)
+    drama = userdrama.drama
+
+    drama.update!(latest_episode: userdrama.episode_number)
+    refute_predicate userdrama.reload, :new_episode_available?
+
+    drama.update!(latest_episode: userdrama.episode_number - 1)
+    refute_predicate userdrama.reload, :new_episode_available?
+  end
 end

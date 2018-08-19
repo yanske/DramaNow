@@ -10,7 +10,13 @@ class UserDrama < ApplicationRecord
   validates :episode_length, presence: true, numericality: { only_integer: true }
 
   validate :unique_user_drama_episode_number, on: :create
-  
+
+  default_scope { order(episode_number: :asc) }
+
+  def new_episode_available?
+    return drama.latest_episode > episode_number
+  end
+
   private
 
   def unique_user_drama_episode_number

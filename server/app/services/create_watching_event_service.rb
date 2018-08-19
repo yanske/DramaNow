@@ -57,7 +57,7 @@ class CreateWatchingEventService
 
   def update_latest_episode
     if @latest_episode > @drama.latest_episode
-      @drama.update!(latest_episode: @latest_episode, latest_episode_update: Time.current)
+      @drama.update!(latest_episode: @latest_episode)
     end
   end
 end

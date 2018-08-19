@@ -30,7 +30,7 @@ class CreateWatchingEventServiceTest < ActiveSupport::TestCase
       end 
     end
 
-    event = WatchingEvent.last
+    event = WatchingEvent.unscoped.last
     assert_equal event.user_drama_id, @userdrama.id
     assert_equal event.duration, @create_watching_event_params[:currentTime]
   end
@@ -78,25 +78,9 @@ class CreateWatchingEventServiceTest < ActiveSupport::TestCase
       end 
     end
 
-    new_user_drama = UserDrama.last
+    new_user_drama = UserDrama.unscoped.last
     assert_equal new_user_drama.drama_id, @drama.id
     assert_equal new_user_drama.user_id, @user.id
     assert_equal new_user_drama.episode_number, @create_watching_event_params[:currentEpisode]
-  end
-
-  test "updates latest_episode_updated on drama when updated" do
-    new_latested = 20
-    @create_watching_event_params[:latestEpisode] = new_latested
-    create_watching_event = CreateWatchingEventService.new(@create_watching_event_params)
-
-    previous_episode = @drama.latest_episode
-    previous_episode_updated = @drama.latest_episode_update
-    assert new_latested > previous_episode
-    
-    Timecop.freeze(previous_episode_updated + 1000) do
-      assert create_watching_event.create
-      assert_equal @drama.reload.latest_episode, new_latested
-      assert_equal @drama.latest_episode_update, previous_episode_updated + 1000
-    end
   end
 end

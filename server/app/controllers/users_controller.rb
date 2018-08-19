@@ -22,7 +22,21 @@ class UsersController < ApplicationController
       if user_exists
         format.json { render json: "Valid", status: :ok }
       else
-        format.json { render json: "", status: :unauthorized }
+        format.json { render json: "", status: :not_found }
+      end
+    end
+  end
+
+  # GET /users/:id/watch_list.json
+  def watch_list
+    user_exists = User.exists?(key: params[:id])
+    
+    respond_to do |format|
+      if user_exists
+        # Call service here
+        format.json { render json: "Valid", status: :ok }
+      else
+        format.json { render json: "", status: :not_found }
       end
     end
   end
