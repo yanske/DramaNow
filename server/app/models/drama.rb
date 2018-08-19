@@ -7,6 +7,7 @@ class Drama < ApplicationRecord
   validates :site, presence: true, inclusion: { in: ACCEPTED_SITES }
   validates :link, presence: true
   validates :latest_episode, presence: true, numericality: { only_integer: true }
+  validates :latest_episode_update, presence: true
   validate :unique_title_and_site, on: :create
 
   private

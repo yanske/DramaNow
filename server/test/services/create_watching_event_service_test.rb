@@ -50,6 +50,7 @@ class CreateWatchingEventServiceTest < ActiveSupport::TestCase
     new_drama = Drama.last
     assert_equal new_drama.title, @create_watching_event_params[:title]
     assert_equal new_drama.site, @create_watching_event_params[:site]
+    refute_nil new_drama.latest_episode_update
   end
 
   test "does not create anything if user does not exist" do

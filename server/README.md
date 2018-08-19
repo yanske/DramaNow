@@ -21,3 +21,16 @@
 
 * Service to process watching request
 * Service to process update request
+
+### Loading list
+
+* get all user dramas, and associated drama
+* get latest watchings of user dramas
+* depending on time, return current episode, or next if exist, else none
+* cache results and return
+
+### Job
+
+* get dramas last updated within a month (make sure drama's last updated is not nil)
+
+* parse

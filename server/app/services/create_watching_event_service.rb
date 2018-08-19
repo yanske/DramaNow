@@ -40,6 +40,7 @@ class CreateWatchingEventService
       title: @title,
       site: @site,
       latest_episode: @latest_episode,
+      latest_episode_update: Time.current,
       link: @url,
       thumbnail: @thumbnail
     )
