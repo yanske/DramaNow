@@ -29,12 +29,12 @@ class UsersController < ApplicationController
 
   # GET /users/:id/watch_list.json
   def watch_list
-    user_exists = User.exists?(key: params[:id])
+    user = User.find_by(key: params[:id])
     
     respond_to do |format|
-      if user_exists
-        # Call service here
-        format.json { render json: "Valid", status: :ok }
+      if user
+        watch_list = CreateWatchListService.new(user).create
+        format.json { render json: watch_list, status: :ok }
       else
         format.json { render json: "", status: :not_found }
       end

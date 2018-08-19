@@ -38,4 +38,11 @@ class DramaTest < ActiveSupport::TestCase
       refute_equal drama_one.latest_episode_update.to_i, time.to_i
     end
   end
+
+  test "link_to_episode returns correct link for dramafever sites" do
+    drama_one = dramas(:one)
+    drama_one.update!(link: 'https://www.dramafever.com/drama/123/28/slug-me/')
+    assert_equal drama_one.link_to_episode(10),
+      "https://www.dramafever.com/drama/123/10/slug-me/"
+  end
 end

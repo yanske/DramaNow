@@ -3,7 +3,8 @@ class Drama < ApplicationRecord
 
   has_many :user_dramas, dependent: :destroy
 
-  ACCEPTED_SITES = ['dramafever'].freeze
+  DRAMAFEVER = 'dramafever'
+  ACCEPTED_SITES = [DRAMAFEVER].freeze
 
   validates :title, presence: true, format: { with: /\A[a-zA-Z0-9-]+\Z/ }
   validates :site, presence: true, inclusion: { in: ACCEPTED_SITES }
@@ -16,7 +17,22 @@ class Drama < ApplicationRecord
 
   # Scope for should check based on latest_episode_update
 
+  def link_to_episode(episode_number)
+    case site
+    when DRAMAFEVER
+      return link_to_dramafever_episode(episode_number)
+    end
+  end
+
   private
+
+  def link_to_dramafever_episode(episode_number)
+    # URL format: https://www.dramafever.com/drama/[drama #]/[episode #]/[drama-slug]/
+    # Find index of / between [episode #], and replace with episode_number
+    split_link = link.split('/')
+    split_link[5] = episode_number
+    split_link.join('/') + '/'
+  end
 
   def unique_title_and_site
     if Drama.where(title: self.title, site: self.site).exists?
