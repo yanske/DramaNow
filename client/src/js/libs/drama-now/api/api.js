@@ -1,7 +1,7 @@
 define(function(){
   const baseUrl = 'http://0.0.0.0:3000/';
   const status = { ok: 200, created: 201 }
-  var httpRequest = function() {
+  var HttpRequest = function() {
     this.get = function(url, onSuccess, onError){
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() {
@@ -34,18 +34,23 @@ define(function(){
   return {
     signup: function(onSuccess, onError) {
       const requestUrl = baseUrl + 'users';
-      var request = new httpRequest();
+      var request = new HttpRequest();
       request.post(requestUrl, null, onSuccess, onError);
     },
     login: function(key, onSuccess, onError){
       const requestUrl = baseUrl + 'users/valid?key=' + key;
-      var request = new httpRequest();
+      var request = new HttpRequest();
       request.get(requestUrl, onSuccess, onError);
     },
     watchingUpdate: function(key, payload, onSuccess, onError) {
       const requestUrl = baseUrl + 'users/' + key + '/watching_events';
-      var request = new httpRequest();
+      var request = new HttpRequest();
       request.post(requestUrl, JSON.stringify(payload), onSuccess, onError);
+    },
+    watchList: function(key, onSuccess, onError) {
+      const requestUrl = baseUrl + 'users/' + key + '/watch_list';
+      var request = new HttpRequest();
+      request.get(requestUrl, onSuccess, onError);
     }
   }
 });

@@ -18,9 +18,9 @@ define(function(require) {
     signup.render(container, api, callbacks);
   }
 
-  function initList() {
+  function initList(key) {
     var list = require('./pages/list');
-    list.render(container, api, callbacks);
+    list.render(container, api, callbacks, key);
   }
 
   // If key, render list, else, render home
@@ -29,7 +29,7 @@ define(function(require) {
       initHome();
     } else {
       console.log("User key: " + result.key);
-      initList();
+      initList(result.key);
     }
   });
 });
