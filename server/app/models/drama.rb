@@ -24,6 +24,10 @@ class Drama < ApplicationRecord
     end
   end
 
+  def pretty_title
+    self.title.gsub('-', ' ').titleize.strip
+  end
+
   private
 
   def link_to_dramafever_episode(episode_number)

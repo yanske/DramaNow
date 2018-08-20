@@ -55,4 +55,10 @@ class DramaTest < ActiveSupport::TestCase
     
     assert_equal Drama.active.map(&:id), [drama_one.id]
   end
+
+  test "pretty title returns unslugged, capitalized, trimed title" do
+    drama = dramas(:one)
+    drama.title = "a-very-good-test-case-for-a-test-"
+    assert_equal drama.pretty_title, "A Very Good Test Case for a Test"
+  end
 end

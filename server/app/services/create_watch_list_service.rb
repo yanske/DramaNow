@@ -39,7 +39,7 @@ class CreateWatchListService
     timestamp = next_episode ? 0 : user_drama.watching_events.last.duration
     
     {
-      title: user_drama.drama.title,
+      title: user_drama.drama.pretty_title,
       episode: episode_number,
       link: link,
       img: user_drama.drama.thumbnail,

@@ -30,7 +30,7 @@ class CreateWatchListServiceTest < ActiveSupport::TestCase
     }
 
     @expected_list = [{
-      title: "slug-me",
+      title: "Slug Me",
       episode: 2,
       link: "https://www.dramafever.com/drama/123/2/slug-me/",
       img: "www.img.com",
