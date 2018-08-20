@@ -15,7 +15,7 @@ class Drama < ApplicationRecord
 
   before_validation :update_latest_episode_timestamp
 
-  # Scope for should check based on latest_episode_update
+  scope :active, -> { where('latest_episode_update > ? ', DateTime.now - 35.days) }
 
   def link_to_episode(episode_number)
     case site

@@ -45,4 +45,14 @@ class DramaTest < ActiveSupport::TestCase
     assert_equal drama_one.link_to_episode(10),
       "https://www.dramafever.com/drama/123/10/slug-me/"
   end
+
+  test "active scope returns dramas with latest episode updated within 35 days" do
+    drama_one = dramas(:one)
+    drama_one.update_column(:latest_episode_update, 30.days.ago)
+
+    drama_two = dramas(:two)
+    drama_two.update_column(:latest_episode_update, 40.days.ago)
+    
+    assert_equal Drama.active.map(&:id), [drama_one.id]
+  end
 end
