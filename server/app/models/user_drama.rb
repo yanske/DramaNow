@@ -17,6 +17,10 @@ class UserDrama < ApplicationRecord
     return drama.latest_episode > episode_number
   end
 
+  def latest_watching_event
+    watching_events.order(:duration).last
+  end
+
   private
 
   def unique_user_drama_episode_number
