@@ -2,8 +2,7 @@ define(function(require){
   return {
     render: function(container, api, callbacks, key) {
       var Show = require('../models/show');
-
-      container.innerHTML = '<h1> LIST </h1>';
+      container.innerHTML = '';
       api.watchList(key, function(response){
         var shows = []
         var rawShows = JSON.parse(response);
