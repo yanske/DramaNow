@@ -1,4 +1,14 @@
 #!/usr/bin/env ruby
+
+# Listen to arguments -> if starting server with dev, start MySQL as well
+if ARGV.length == 2 && (ARGV[0] == "s" || ARGV[0] == "server") && ARGV[1] == "dev"
+  puts "=> Starting MySql"
+  %x(service mysql start)
+  %x(rails db:create)
+  %x(rails db:migrate)
+  ARGV.pop
+end
+
 APP_PATH = File.expand_path('../config/application', __dir__)
 require_relative '../config/boot'
 require 'rails/commands'
